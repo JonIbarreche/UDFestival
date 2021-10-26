@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -22,9 +24,15 @@ import java.awt.event.ActionEvent;
 
 public class LoginWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsername1;
 	private JPasswordField txtPassword1;
+	private JLabel lblLoginMessage1 = new JLabel("");
+	private JLabel lblGest;
 
 	
 	/**
@@ -32,7 +40,7 @@ public class LoginWindow extends JFrame {
 	 */
 	public LoginWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 668, 455);
+		setBounds(100, 100, 668, 462);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(173, 216, 230));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -112,7 +120,9 @@ public class LoginWindow extends JFrame {
 		JButton btnRegister = new JButton("REGISTRARSE");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Ventana Registro
+				RegistroWindow rw = new RegistroWindow();
+				rw.setVisible(true);
+				dispose();
 			}
 		});
 		btnRegister.setBounds(115, 311, 173, 57);
@@ -122,7 +132,7 @@ public class LoginWindow extends JFrame {
 		pnlBtnLogin1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Login
+				Login(txtPassword1, txtUsername1);
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -162,7 +172,9 @@ public class LoginWindow extends JFrame {
 		lblGest.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Main Window
+				PrincipalWindow pw = new PrincipalWindow();
+				pw.setVisible(true);
+				dispose();
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -179,6 +191,29 @@ public class LoginWindow extends JFrame {
 		contentPane.add(lblGest);
 	}
 	/*
-	 * Metodo para hacer login
-	 */
+	 * Metodo para hacer login (no esta conectado a BD todavia)
+	 * Añadir un else if que checkee si el usuario y contraseña de la BD son correctos y llevar a la ventana principal
+	 * 
+	 * 
+	  */
+	public void Login(JPasswordField txtPassword1, JTextField txtUsername1) {
+		if (txtUsername1.getText().equals("admin") && txtPassword1.getText().equals("admin")) {
+			lblLoginMessage1.setText("");
+			AdminWindow aw = new AdminWindow();
+			aw.setVisible(true);
+			dispose();
+			// De momento dejamos este usuario para acceder desde LoginWindow a PrincipalWindow (hasta que añadamos la BD)
+		}else if (txtUsername1.getText().equals("user") && txtPassword1.getText().equals("1234")) {
+			lblLoginMessage1.setText("te has loggeado correctamente!");
+			PrincipalWindow pw = new PrincipalWindow();
+			pw.setVisible(true);
+			dispose();
+		}
+		else if (txtUsername1.getText().equals("") || txtUsername1.getText().equals("Username")
+				|| txtPassword1.getText().equals("") || txtPassword1.getText().equals("Password")) {
+			lblLoginMessage1.setText("Por favor rellena los campos!");
+		} else {
+			lblLoginMessage1.setText("Usuario y contraseña no coinciden");
+		}
+	}
 }

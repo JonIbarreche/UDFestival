@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 import java.util.logging.Level;
 import org.apache.log4j.*;
 
-import gui.ExampleWindow;
+import gui.LoginWindow;
 
 public class MainWindow {
 	private static final Logger logger = LogManager.getLogger(MainWindow.class);

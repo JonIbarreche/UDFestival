@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RegistroWindow extends JFrame {
 
@@ -127,6 +129,19 @@ public class RegistroWindow extends JFrame {
 		btnRegistrase.setFont(new Font("Rockwell", Font.BOLD, 16));
 		btnRegistrase.setBounds(363, 383, 147, 48);
 		contentPane.add(btnRegistrase);
+		
+		JLabel label = new JLabel("<-");
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				LoginWindow lww = new LoginWindow();
+				lww.setVisible(true);
+				dispose();
+			}
+		});
+		label.setFont(new Font("Tahoma", Font.BOLD, 24));
+		label.setBounds(12, 13, 42, 22);
+		contentPane.add(label);
 	}
 	
 	/*

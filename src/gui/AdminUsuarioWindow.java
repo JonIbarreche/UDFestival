@@ -100,9 +100,9 @@ public class AdminUsuarioWindow extends JFrame {
 		btnAdd.setBounds(84, 349, 131, 34);
 		contentPane.add(btnAdd);
 		
-		JList list = new JList();
-		list.setBounds(318, 97, 321, 219);
-		contentPane.add(list);
+		JList listUsuario = new JList();
+		listUsuario.setBounds(318, 97, 321, 219);
+		contentPane.add(listUsuario);
 		
 		JButton btnEliminar = new JButton("ELIMINAR");
 		btnEliminar.addActionListener(new ActionListener() {

@@ -19,4 +19,5 @@ public class BDException extends Exception {
 		super(message, e);
 		logger.warn(message, e);
 	}
+	//prueba de push
 }

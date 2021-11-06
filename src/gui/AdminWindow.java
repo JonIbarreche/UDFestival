@@ -69,7 +69,7 @@ public class AdminWindow extends JFrame {
 		JLabel lblUdfestival = new JLabel("UDFestival");
 		lblUdfestival.setForeground(Color.WHITE);
 		lblUdfestival.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblUdfestival.setBounds(321, 412, 67, 28);
+		lblUdfestival.setBounds(321, 412, 88, 28);
 		contentPane.add(lblUdfestival);
 		
 		JLabel label = new JLabel("<-");

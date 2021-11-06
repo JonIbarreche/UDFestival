@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PrincipalWindow extends JFrame {
 
@@ -23,7 +27,7 @@ public class PrincipalWindow extends JFrame {
 	 */
 	public PrincipalWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 818, 551);
+		setBounds(100, 100, 740, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -31,8 +35,9 @@ public class PrincipalWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblUdfestival = new JLabel("UDFestival");
+		lblUdfestival.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUdfestival.setFont(new Font("Rockwell", Font.BOLD, 42));
-		lblUdfestival.setBounds(285, 13, 240, 57);
+		lblUdfestival.setBounds(250, 13, 240, 57);
 		contentPane.add(lblUdfestival);
 		
 		JLabel label = new JLabel("<-");
@@ -47,5 +52,18 @@ public class PrincipalWindow extends JFrame {
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label.setBounds(36, 13, 46, 40);
 		contentPane.add(label);
+		
+		JButton btnNewButton = new JButton("Comprar Tickets");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ir a TicketWindow
+				TicketWindow tw = new TicketWindow();
+				tw.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		btnNewButton.setBounds(231, 225, 278, 50);
+		contentPane.add(btnNewButton);
 	}
 }

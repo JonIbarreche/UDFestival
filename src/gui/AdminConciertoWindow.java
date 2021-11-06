@@ -141,6 +141,7 @@ public class AdminConciertoWindow extends JFrame {
 		contentPane.add(btnEliminar);
 		
 		JLabel lblUdfestival = new JLabel("UDFestival");
+		lblUdfestival.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblUdfestival.setForeground(Color.WHITE);
 		lblUdfestival.setBounds(324, 434, 84, 16);
 		contentPane.add(lblUdfestival);

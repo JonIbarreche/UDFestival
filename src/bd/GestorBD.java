@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.apache.log4j.*;
 
 import jdo.Usuario;
@@ -58,6 +60,35 @@ public class GestorBD {
 			} catch (SQLException e) {
 				logger.warn(e.getMessage());
 			} 	
+		}
+		//Crear tablas en la bd (usuario, producto, cartelera y concierto)
+		public static void crearTablas(Connection con) {
+			String sent1 = "CREATE TABLE IF NOT EXISTS Usuario(id long, nom String, nick String, mail String, password String, phone int)";
+			String sent2 = "CREATE TABLE IF NOT EXISTS Producto(id long, nombre String, descripcion String, precio long, url String)";
+			String sent3 = "CREATE TABLE IF NOT EXISTS Cartelera(id long, artista String, descripcion String, capacidad int, url String)";
+			String sent4 = "CREATE TABLE IF NOT EXISTS Concierto(id long, artista String, descripcion String, capacidad int, url String)";
+			
+			Statement st = null;
+			
+			try {
+				st = con.createStatement();
+				st.executeUpdate(sent1);
+				st.executeUpdate(sent2);
+				st.executeUpdate(sent3);
+				st.executeUpdate(sent4);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				if(st!=null) {
+					try {
+						st.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	
 	

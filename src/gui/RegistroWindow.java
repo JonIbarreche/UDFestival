@@ -123,6 +123,7 @@ public class RegistroWindow extends JFrame {
 				dispose();
 				LoginWindow lww = new LoginWindow();
 				lww.setVisible(true);
+				BarraProgreso bp = new BarraProgreso("usuario");
 				dispose();
 			}
 		});

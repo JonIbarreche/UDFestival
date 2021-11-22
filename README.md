@@ -23,6 +23,19 @@ Proyecto usando [JAVA](https://github.com/topics/java)
 
 ---
 
+## MEJORAS
+
+- [ ] Comprobar la funcionalidad desarrollada de registro y login de usuarios
+- [ ]  La barra de progreso revisar
+- [ ]  Aspectos del estilo visual que deben mejorarse: botones de distintos colores en el registro/login, faltan etiquetas en el login, etc.
+- [ ]  La clase de gestión de BD debe empezar a utilizar en los distintos métodos.
+- [ ]  Logger en de forma coherente en todo el proyecto.
+- [ ]  Además de loggear los errores y excepciones, es recomendable notificar al usuario de los problemas existentes mediante cuadros de diálogo.
+- [ ]  Capturar y procesar todas las excepciones en la BD.
+- [ ]  Revisar las normas de estilo del código (algunos métodos "Login" empieza en mayúscula ahora).
+- [ ]  Tests unitarios deben estar en una carpeta de código "test" fuera de "src".
+- [ ]  Mejorar el nivel de cobertura de los tests para la próxima entrega.
+
 ## EXPLICACION
 <p align="justify"> 
 Nuestro proyecto trata de la gestión de un festival de música que se celebra en verano. Se podrá acceder a la aplicación del proyecto de dos formas: como administrador y como usuario. 

@@ -84,10 +84,36 @@ public class GestorBD {
 					try {
 						st.close();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.warn(e.getMessage());
 					}
 				}
+			}
+		}
+		
+		//Insertar Usuario en la bd 
+		
+		public static void insertarUsuario(Connection con, long id, String nom, String nick, String mail, String pw, int pho) {
+			String sentSQL = "INSERT INTO Usuario VALUES('"+id+"','"+nom+"','"+nick+"','"+mail+"','"+pw+"',"+pho+")";
+			
+			try {
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+		
+		//Eliminar usuario de la bd
+		
+		public static void eliminarUsuario(Connection con, long id) {
+			String sentSQL = "DELETE FROM Usuario WHERE id ='"+id+"'";
+			try {
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
 			}
 		}
 	

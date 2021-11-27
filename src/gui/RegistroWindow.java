@@ -24,6 +24,8 @@ public class RegistroWindow extends JFrame {
 	/**
 	 * 
 	 */
+	
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldNombre= new JTextField();

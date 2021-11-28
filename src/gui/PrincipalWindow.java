@@ -63,7 +63,20 @@ public class PrincipalWindow extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		btnNewButton.setBounds(231, 225, 278, 50);
+		btnNewButton.setBounds(230, 150, 278, 50);
 		contentPane.add(btnNewButton);
+		
+		JButton btnComprarPackAhorro = new JButton("Comprar Pack Ahorro");
+		btnComprarPackAhorro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ir a TicketWindow
+				TicketWindow tw = new TicketWindow();
+				tw.setVisible(true);
+				dispose();
+			}
+		});
+		btnComprarPackAhorro.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		btnComprarPackAhorro.setBounds(230, 300, 278, 50);
+		contentPane.add(btnComprarPackAhorro);
 	}
 }

@@ -2,10 +2,14 @@ package bd;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+
 import org.apache.log4j.*;
+
 
 import jdo.Usuario;
 
@@ -42,25 +46,7 @@ public class GestorBD {
 		}
 	}
 	
-	//REGISTRAR EN LA BD UN CLIENTE NUEVO
-		public void insertaUsuario(Usuario u) {
-			try {			
-				pStatement = conn.prepareStatement("INSERT INTO usuario VALUES (default,?,?,?,?,?)");
-				
-				pStatement.setString(1, u.getNombre());
-				pStatement.setString(2, u.getNickname());
-				pStatement.setString(3, u.getMail());
-				pStatement.setString(4, u.getPassword());
-				pStatement.setInt(5, u.getPhoneNumber());
-
-
-				//...
-				pStatement.executeUpdate();
-				conn.close();
-			} catch (SQLException e) {
-				logger.warn(e.getMessage());
-			} 	
-		}
+	
 		//Crear tablas en la bd (usuario, producto, cartelera y concierto)
 		public static void crearTablas(Connection con) {
 			String sent1 = "CREATE TABLE IF NOT EXISTS Usuario(id long, nom String, nick String, mail String, password String, phone int)";
@@ -71,7 +57,7 @@ public class GestorBD {
 			Statement st = null;
 			
 			try {
-				st = con.createStatement();
+				st = conn.createStatement();
 				st.executeUpdate(sent1);
 				st.executeUpdate(sent2);
 				st.executeUpdate(sent3);
@@ -96,7 +82,7 @@ public class GestorBD {
 			String sentSQL = "INSERT INTO Usuario VALUES('"+id+"','"+nom+"','"+nick+"','"+mail+"','"+pw+"',"+pho+")";
 			
 			try {
-				Statement stmt = con.createStatement();
+				Statement stmt = conn.createStatement();
 				stmt.executeUpdate(sentSQL);
 				stmt.close();
 			} catch (SQLException e) {
@@ -109,12 +95,41 @@ public class GestorBD {
 		public static void eliminarUsuario(Connection con, long id) {
 			String sentSQL = "DELETE FROM Usuario WHERE id ='"+id+"'";
 			try {
-				Statement stmt = con.createStatement();
+				Statement stmt = conn.createStatement();
 				stmt.executeUpdate(sentSQL);
 				stmt.close();
 			} catch (SQLException e) {
 				logger.warn(e.getMessage());
 			}
+		}
+		
+		public static Usuario obtenerDatosUsuario(long id) {
+			String sentSQL = "select * from Usuario where id="+id+";";
+			Usuario usu = null;
+			try {
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
+				System.out.println(sentSQL);
+				if(rs.next()) {
+					System.out.println("USUARIO ENCONTRADO");
+					
+					String nom = rs.getString("nombre");
+					String nick = rs.getString("nick");
+					String mail = rs.getString("mail");
+					String pw =  rs.getString("pw");
+					int pho = rs.getInt("pho");
+					usu = new Usuario(id, nom, nick, mail, pw, pho);
+				}else {
+
+					System.out.println("USUARIO NO ENCONTRADO");
+				}
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return usu;
 		}
 	
 	

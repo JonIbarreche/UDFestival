@@ -11,9 +11,13 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import bd.GestorBD;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -121,11 +125,17 @@ public class RegistroWindow extends JFrame {
 		btnRegistrase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Añadir BD a registro de Usuario
+				String nom = textFieldNombre.getText();
+				String apo = textFieldApodo.getText();
+				String mail = textFieldMail.getText();
+				String con = textFieldContra.getText();
+				String tf = textFieldNTelefono.getText();
 				Registro(textFieldNTelefono, textFieldNombre, textFieldApodo, textFieldMail, textFieldContra);
 				dispose();
 				LoginWindow lww = new LoginWindow();
 				lww.setVisible(true);
 				BarraProgreso bp = new BarraProgreso("usuario");
+				//GestorBD.insertarUsuario(nom, apo, mail, con, tf);
 				dispose();
 			}
 		});

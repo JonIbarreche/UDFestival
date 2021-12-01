@@ -36,6 +36,7 @@ public class TicketWindow extends JInternalFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
 		JLabel lblNewLabel = new JLabel("<-");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel.setBounds(36, 13, 46, 40);

@@ -131,6 +131,79 @@ public class GestorBD {
 			}
 			return usu;
 		}
-	
+		
+		// Insertar producto en la bd
+		public static void insertarProducto(Connection con, long id, String nom, String des, long pre, String url) {
+			String sentSQL = "INSERT INTO Producto VALUES('"+id+"','"+nom+"','"+des+"',"+pre+",'"+url+"')";
+			
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+		
+		// Eliminar producto de la bd
+		public static void eliminarProducto(Connection con, long id) {
+			String sentSQL = "DELETE FROM Producto WHERE id ='"+id+"'";
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+		
+		//Insertar cartelera en la bd
+		public static void insertarCartelera(Connection con, long id, String artista, String des, int cap, String url) {
+			String sentSQL = "INSERT INTO Cartelera VALUES('"+id+"','"+artista+"','"+des+"',"+cap+",'"+url+"')";
+			
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+		
+		//Eliminar cartelera de la bd
+		public static void eliminarCartelera(Connection con, long id) {
+			String sentSQL = "DELETE FROM Cartelera WHERE id ='"+id+"'";
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+		
+		//Insertar concierto en la BD
+		public static void insertarConcierto(Connection con, long id, String artista, String des, int cap, String url) {
+			String sentSQL = "INSERT INTO Concierto VALUES('"+id+"','"+artista+"','"+des+"',"+cap+",'"+url+"')";
+			
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
+		//Eliminar concierto de la BD
+		public static void eliminarConcierto(Connection con, long id) {
+			String sentSQL = "DELETE FROM Concierto WHERE id ='"+id+"'";
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate(sentSQL);
+				stmt.close();
+			} catch (SQLException e) {
+				logger.warn(e.getMessage());
+			}
+		}
 	
 }

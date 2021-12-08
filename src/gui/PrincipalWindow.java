@@ -66,6 +66,20 @@ public class PrincipalWindow extends JFrame {
 		btnNewButton.setBounds(230, 150, 278, 50);
 		contentPane.add(btnNewButton);
 		
+		JButton btnConsultaConciertos = new JButton("Consultar conciertos");
+		btnConsultaConciertos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ir a ventana de consulta de conciertos
+				ConsultaConciertosWindow ccw = new ConsultaConciertosWindow();
+				ccw.setVisible(true);
+				dispose();
+			}
+		});
+		btnConsultaConciertos.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		btnConsultaConciertos.setBounds(230, 150, 278, 50);
+		contentPane.add(btnConsultaConciertos);
+		
+		
 		JButton btnComprarPackAhorro = new JButton("Comprar Pack Ahorro");
 		btnComprarPackAhorro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

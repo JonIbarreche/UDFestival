@@ -47,6 +47,28 @@ public class GestorBD {
 	}
 	
 	
+	public static String[] inicioSesion(String usuario) throws BDException {
+		cargarConectarDriver();
+		try (PreparedStatement stmt = conn.prepareStatement("SELECT password FROM usuario WHERE nickname = ?")) {
+			stmt.setString(1, usuario);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				String[] datosInicio = new String[3];
+				datosInicio[0] = rs.getString("password");
+
+				logger.info("Obtenidos el prefijo, password y clave de cifrado del usuario " + usuario
+						+ "para el inicio de sesión");
+				return datosInicio;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			logger.error("Error al obtener la información del usuario " + usuario, e);
+		}
+		return null;
+	}
+	
 		//Crear tablas en la bd (usuario, producto, cartelera y concierto)
 		public static void crearTablas(Connection con) {
 			String sent1 = "CREATE TABLE IF NOT EXISTS Usuario(id long, nom String, nick String, mail String, password String, phone int)";

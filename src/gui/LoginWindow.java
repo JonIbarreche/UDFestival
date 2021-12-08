@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import bd.BDException;
+import bd.GestorBD;
+import org.apache.log4j.*;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -21,6 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class LoginWindow extends JFrame {
 
@@ -32,7 +36,7 @@ public class LoginWindow extends JFrame {
 	private JTextField txtUsername1;
 	private JPasswordField txtPassword1;
 	private JLabel lblLoginMessage1 = new JLabel("");
-	private JLabel lblGest;
+	private static final Logger logger = LogManager.getLogger(BDException.class);
 
 	
 	/**
@@ -87,6 +91,12 @@ public class LoginWindow extends JFrame {
 		contentPane.add(lblIconPassword1);
 		lblIconPassword1.setLayout(null);
 		
+		JTextPane textPane = new JTextPane();
+		textPane.setForeground(Color.RED);
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textPane.setBounds(194, 287, 263, 22);
+		contentPane.add(textPane);
+		
 		txtPassword1 = new JPasswordField();
 		txtPassword1.addFocusListener(new FocusAdapter() {
 			@Override
@@ -125,48 +135,94 @@ public class LoginWindow extends JFrame {
 				dispose();
 			}
 		});
-		btnRegister.setBounds(115, 311, 173, 57);
+		btnRegister.setBounds(89, 322, 173, 57);
 		contentPane.add(btnRegister);
 		
 		JPanel pnlBtnLogin1 = new JPanel();
 		pnlBtnLogin1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Login(txtPassword1, txtUsername1);
+				// Login(txtPassword1, txtUsername1);
+				String contra = txtPassword1.getText().toString();
+				String usuario = txtUsername1.getText();
+				String[] datosInicio = null;
+
+				txtUsername1.setBackground(null);
+				txtPassword1.setBackground(null);
+				textPane.setVisible(false);
+				if (txtUsername1.getText().equals("admin") && txtPassword1.getText().equals("admin")) {
+					lblLoginMessage1.setText("");
+					AdminWindow aw = new AdminWindow();
+					aw.setVisible(true);
+					dispose();
+					// De momento dejamos este usuario para acceder desde LoginWindow a PrincipalWindow (hasta que añadamos la BD)
+				} else {
+
+					try {
+						datosInicio = GestorBD.inicioSesion(usuario);
+					} catch (BDException e1) {
+						logger.error("Error al iniciar sesión debido a un problema en la BD", e1);
+					}
+					if (datosInicio != null) {
+						String contrabd = datosInicio[0];
+						boolean sesionIniciada = contrabd.equals(contra);
+
+						if (sesionIniciada) {
+							// Como Usuario
+							logger.info("Sesión iniciada como " + usuario);
+							lblLoginMessage1.setText("te has loggeado correctamente!");
+							PrincipalWindow pw = new PrincipalWindow();
+							pw.setVisible(true);
+							dispose();
+						} else {
+							logger.warn("La contraseña introducida es incorrecta");
+							textPane.setVisible(true);
+							textPane.setText("Contraseña incorrecta.");
+							txtPassword1.setBackground(Color.RED);
+						}
+					} else {
+						logger.warn("El usuario introducido no existe");
+						textPane.setVisible(true);
+						textPane.setText("Usuario no encontrado");
+						txtUsername1.setBackground(Color.RED);
+					}
+
+				}
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				pnlBtnLogin1.setBackground(new Color(20, 30, 40));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				pnlBtnLogin1.setBackground(new Color(47, 79, 79));
 
 			}
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				pnlBtnLogin1.setBackground(new Color(60, 80, 90));
 			}
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				pnlBtnLogin1.setBackground(new Color(20, 30, 40));
 			}
 		});
+		
+		
 		pnlBtnLogin1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pnlBtnLogin1.setBackground(new Color(100, 149, 237));
-		pnlBtnLogin1.setBounds(381, 311, 173, 57);
+		pnlBtnLogin1.setBounds(385, 322, 173, 57);
 		contentPane.add(pnlBtnLogin1);
 		pnlBtnLogin1.setLayout(null);
 		
 		JLabel lblIniciarSesion = new JLabel("INICIAR SESION");
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIniciarSesion.setBounds(40, 13, 106, 31);
+		lblIniciarSesion.setBounds(38, 13, 106, 31);
 		pnlBtnLogin1.add(lblIniciarSesion);
-		
-		JLabel lblLoginMessage1 = new JLabel("");
-		lblLoginMessage1.setForeground(new Color(165, 42, 42));
-		lblLoginMessage1.setBounds(189, 282, 273, 16);
-		contentPane.add(lblLoginMessage1);
 		
 		JLabel lblGest = new JLabel("Entrar como Invitado");
 		lblGest.addMouseListener(new MouseAdapter() {
@@ -189,13 +245,15 @@ public class LoginWindow extends JFrame {
 		lblGest.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblGest.setBounds(257, 381, 127, 14);
 		contentPane.add(lblGest);
+		
+		
 	}
 	/*
 	 * Metodo para hacer login (no esta conectado a BD todavia)
 	 * Añadir un else if que checkee si el usuario y contraseña de la BD son correctos y llevar a la ventana principal
 	 * 
 	 * 
-	  */
+	  
 	public void Login(JPasswordField txtPassword1, JTextField txtUsername1) {
 		if (txtUsername1.getText().equals("admin") && txtPassword1.getText().equals("admin")) {
 			lblLoginMessage1.setText("");
@@ -216,4 +274,6 @@ public class LoginWindow extends JFrame {
 			lblLoginMessage1.setText("Usuario y contraseña no coinciden");
 		}
 	}
+	*/
+	
 }

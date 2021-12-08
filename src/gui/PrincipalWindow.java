@@ -63,22 +63,8 @@ public class PrincipalWindow extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		btnNewButton.setBounds(230, 150, 278, 50);
+		btnNewButton.setBounds(230, 100, 278, 50);
 		contentPane.add(btnNewButton);
-		
-		JButton btnConsultaConciertos = new JButton("Consultar conciertos");
-		btnConsultaConciertos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//ir a ventana de consulta de conciertos
-				ConsultaConciertosWindow ccw = new ConsultaConciertosWindow();
-				ccw.setVisible(true);
-				dispose();
-			}
-		});
-		btnConsultaConciertos.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		btnConsultaConciertos.setBounds(230, 150, 278, 50);
-		contentPane.add(btnConsultaConciertos);
-		
 		
 		JButton btnComprarPackAhorro = new JButton("Comprar Pack Ahorro");
 		btnComprarPackAhorro.addActionListener(new ActionListener() {
@@ -90,7 +76,22 @@ public class PrincipalWindow extends JFrame {
 			}
 		});
 		btnComprarPackAhorro.setFont(new Font("Rockwell", Font.PLAIN, 20));
-		btnComprarPackAhorro.setBounds(230, 300, 278, 50);
+		btnComprarPackAhorro.setBounds(230, 200, 278, 50);
 		contentPane.add(btnComprarPackAhorro);
+		
+		JButton btnSubirFotos = new JButton("Comparte tus experiencias");
+		btnSubirFotos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ir a VentanaFotos
+				VentanaFotos f = new VentanaFotos();
+				f.setVisible(true);
+				dispose();
+			}
+		});
+		
+		btnSubirFotos.setFont(new Font("Rockwell", Font.PLAIN, 20));
+		btnSubirFotos.setBounds(230, 300, 278, 50);
+		contentPane.add(btnSubirFotos);
+
 	}
 }

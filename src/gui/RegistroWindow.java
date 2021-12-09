@@ -132,7 +132,7 @@ public class RegistroWindow extends JFrame {
 				String mail = textFieldMail.getText();
 				String con = textFieldContra.getText();
 				String tf = textFieldNTelefono.getText();
-				Registro(textFieldNTelefono, textFieldNombre, textFieldApodo, textFieldMail, textFieldContra);
+				registro(textFieldNTelefono, textFieldNombre, textFieldApodo, textFieldMail, textFieldContra);
 				dispose();
 				LoginWindow lww = new LoginWindow();
 				lww.setVisible(true);
@@ -165,7 +165,7 @@ public class RegistroWindow extends JFrame {
 	 * Crear Usuario en la BD (conectar a BD)
 	 */
 	
-	public void Registro(JTextField textFieldNTelefono, JTextField textFieldNombre, JTextField textFieldApodo,
+	public void registro(JTextField textFieldNTelefono, JTextField textFieldNombre, JTextField textFieldApodo,
 			JTextField textFieldMail, JPasswordField textFieldContra) {
 		
 		phone = Integer.parseInt(textFieldNTelefono.getText().toString());

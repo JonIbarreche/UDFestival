@@ -20,6 +20,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminConciertoWindow extends JFrame {
 
@@ -127,6 +131,15 @@ public class AdminConciertoWindow extends JFrame {
 		contentPane.add(areaScrollPane);
 		
 		JButton btnAdd = new JButton("AÑADIR");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//añadir
+				JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				
+			}
+		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnAdd.setBounds(86, 386, 163, 43);
 		contentPane.add(btnAdd);
@@ -136,6 +149,15 @@ public class AdminConciertoWindow extends JFrame {
 		contentPane.add(listConcierto);
 		
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//eliminar Concierto
+				JOptionPane.showMessageDialog(null, "Los datos se han eliminado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
+				
+				
+			}
+		});
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnEliminar.setBounds(413, 384, 163, 45);
 		contentPane.add(btnEliminar);

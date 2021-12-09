@@ -34,12 +34,11 @@ public class VentanaFotos extends JFrame  {
 		contentPane.setBackground(new Color(135, 206, 235));
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		
 		JLabel lblTusFotos = new JLabel("EXPERIENCIAS");
 		lblTusFotos.setFont(new Font("Rockwell", Font.BOLD, 33));
-		lblTusFotos.setBounds(130, 13, 509, 52);
 		contentPane.add(lblTusFotos);
 		
 		JLabel label = new JLabel("<-");
@@ -53,7 +52,6 @@ public class VentanaFotos extends JFrame  {
 		});
 		
 		label.setFont(new Font("Tahoma", Font.BOLD, 22));
-		label.setBounds(33, 16, 45, 52);
 		contentPane.add(label);
 		
 		
@@ -85,9 +83,9 @@ public class VentanaFotos extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser("fotos"); //Objeto que me va a permitir seleccionar un fichero
 				/*
-				 * fotos es la carpeta creada dentro de mi proyecto donde estarán las fotos a cargar
+				 * fotos es la carpeta creada dentro de mi proyecto donde estarï¿½n las fotos a cargar
 				 * */
-				int sel = fc.showOpenDialog(null); //Abre la ventana de selección de fichero
+				int sel = fc.showOpenDialog(null); //Abre la ventana de selecciï¿½n de fichero
 				if(sel == JFileChooser.APPROVE_OPTION) { //Si ha seleccionado abrir
 					File ficheroSeleccionado = fc.getSelectedFile();
 					//String nomfich = ficheroSeleccionado.getName();

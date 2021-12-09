@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+import bd.BDException;
+import bd.GestorBD;
+import org.apache.log4j.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +18,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -26,6 +31,8 @@ public class AdminUsuarioWindow extends JFrame {
 	private JTextField txtMail;
 	private JTextField txtPassword;
 	private JTextField txtNumeroDeTelefono;
+	private static final Logger logger = LogManager.getLogger(BDException.class);
+
 
 	
 
@@ -93,6 +100,8 @@ public class AdminUsuarioWindow extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Añadir
+				JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});
@@ -108,6 +117,8 @@ public class AdminUsuarioWindow extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Eliminar
+				JOptionPane.showMessageDialog(null, "Los datos se han eliminado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 15));

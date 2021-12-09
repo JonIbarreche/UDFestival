@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -79,6 +81,13 @@ public class TicketWindow extends JInternalFrame {
 		contentPane.add(txtUrl);
 		
 		JButton btnNewButton = new JButton("Añadir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Añadir 
+				JOptionPane.showMessageDialog(null, "Los datos se han añadido correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnNewButton.setBounds(86, 382, 163, 46);
 		contentPane.add(btnNewButton);
@@ -90,6 +99,10 @@ public class TicketWindow extends JInternalFrame {
 		JButton btnEl = new JButton("Eliminar");
 		btnEl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Eliminar
+				JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		});
 		btnEl.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -97,6 +110,13 @@ public class TicketWindow extends JInternalFrame {
 		contentPane.add(btnEl);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Guardar
+				JOptionPane.showMessageDialog(null, "Los datos se han guardado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnGuardar.setBounds(286, 382, 164, 46);
 		contentPane.add(btnGuardar);

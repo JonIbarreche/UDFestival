@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
@@ -135,6 +137,8 @@ public class RegistroWindow extends JFrame {
 				LoginWindow lww = new LoginWindow();
 				lww.setVisible(true);
 				BarraProgreso bp = new BarraProgreso("usuario");
+				JOptionPane.showMessageDialog(null, "Los datos se han registrado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
 				//GestorBD.insertarUsuario(nom, apo, mail, con, tf);
 				dispose();
 			}

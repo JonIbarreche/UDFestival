@@ -69,6 +69,27 @@ public class GestorBD {
 		return null;
 	}
 	
+	public void guardarUsuario(Usuario j) throws BDException {
+
+        try {
+              pStatement = conn.prepareStatement("INSERT INTO USUARIO VALUES (default, ?, ?, ?, ?, ?, ?)");
+
+              pStatement.setString(1, j.getNombre());
+              pStatement.setString(2, j.getNickname());
+              pStatement.setString(3, j.getMail());
+              pStatement.setString(4, j.getPassword());
+              pStatement.setLong(5, j.getPhoneNumber());
+              pStatement.setLong(6, j.getIsAdmin());
+             
+
+              logger.info("Guardado el usuario " + j.getNombre() + "en la BD");
+
+              pStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new BDException("Error al guardar el usuario admin", e);
+            }
+    }
+	
 		//Crear tablas en la bd (usuario, producto, cartelera y concierto)
 		public static void crearTablas(Connection con) {
 			String sent1 = "CREATE TABLE IF NOT EXISTS Usuario(id long, nom String, nick String, mail String, password String, phone int)";
@@ -140,7 +161,8 @@ public class GestorBD {
 					String mail = rs.getString("mail");
 					String pw =  rs.getString("pw");
 					int pho = rs.getInt("pho");
-					usu = new Usuario(id, nom, nick, mail, pw, pho);
+					int isAdmin = rs.getInt("1");
+					usu = new Usuario(id, nom, nick, mail, pw, pho, isAdmin);
 				}else {
 
 					System.out.println("USUARIO NO ENCONTRADO");

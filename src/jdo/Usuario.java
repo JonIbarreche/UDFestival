@@ -20,11 +20,12 @@ public class Usuario {
 	protected String mail;
 	protected String password;
 	protected int phoneNumber;
+	protected int isAdmin;
 
 	/**
 	 * Construir objeto Usuario con sus atributos correspondientes.
 	 */
-	public Usuario(long idUsuario, String nombre, String nickname, String mail, String password, int phoneNumber) {
+	public Usuario(long idUsuario, String nombre, String nickname, String mail, String password, int phoneNumber, int isAdmin) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
@@ -32,6 +33,15 @@ public class Usuario {
 		this.mail = mail;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
+		this.isAdmin = isAdmin;
+	}
+
+	public int getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(int isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 	public Usuario() {

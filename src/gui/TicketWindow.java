@@ -12,13 +12,14 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TicketWindow extends JInternalFrame {
+public class TicketWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtIdTicket;

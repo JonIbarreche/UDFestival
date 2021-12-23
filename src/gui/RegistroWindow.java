@@ -15,6 +15,10 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 
 import bd.GestorBD;
+import jdo.Usuario;
+import bd.BDException;
+import bd.GestorBD;
+import org.apache.log4j.*;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -40,7 +44,9 @@ public class RegistroWindow extends JFrame {
 	private JPasswordField textFieldContra = new JPasswordField();
 	private JTextField textFieldNTelefono = new JTextField();
 	private int phone;
-	public final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	private static final org.apache.log4j.Logger logger = LogManager.getLogger(BDException.class);
+	private JTextField textFieldisAdmin;
 
 
 
@@ -120,7 +126,7 @@ public class RegistroWindow extends JFrame {
 			}
 		});
 		btnSalir.setFont(new Font("Rockwell", Font.BOLD, 16));
-		btnSalir.setBounds(148, 383, 147, 48);
+		btnSalir.setBounds(148, 405, 147, 48);
 		contentPane.add(btnSalir);
 		
 		JButton btnRegistrase = new JButton("REGISTRASE");
@@ -132,11 +138,18 @@ public class RegistroWindow extends JFrame {
 				String mail = textFieldMail.getText();
 				String con = textFieldContra.getText();
 				String tf = textFieldNTelefono.getText();
-				registro(textFieldNTelefono, textFieldNombre, textFieldApodo, textFieldMail, textFieldContra);
-				dispose();
-				LoginWindow lww = new LoginWindow();
-				lww.setVisible(true);
-				BarraProgreso bp = new BarraProgreso("usuario");
+				String isAdmin = textFieldisAdmin.getText();
+				
+				
+				Usuario u = new Usuario();
+				
+				try {
+					GestorBD.guardarUsuario(u);
+				} catch (BDException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				JOptionPane.showMessageDialog(null, "Los datos se han registrado correctamente", "Éxito en la operación",
 						JOptionPane.INFORMATION_MESSAGE);
 				//GestorBD.insertarUsuario(nom, apo, mail, con, tf);
@@ -144,7 +157,7 @@ public class RegistroWindow extends JFrame {
 			}
 		});
 		btnRegistrase.setFont(new Font("Rockwell", Font.BOLD, 16));
-		btnRegistrase.setBounds(363, 383, 147, 48);
+		btnRegistrase.setBounds(362, 405, 147, 48);
 		contentPane.add(btnRegistrase);
 		
 		JLabel label = new JLabel("<-");
@@ -159,6 +172,15 @@ public class RegistroWindow extends JFrame {
 		label.setFont(new Font("Tahoma", Font.BOLD, 24));
 		label.setBounds(12, 13, 42, 22);
 		contentPane.add(label);
+		
+		JLabel lblIsadmin = new JLabel("isAdmin");
+		lblIsadmin.setBounds(48, 360, 110, 16);
+		contentPane.add(lblIsadmin);
+		
+		textFieldisAdmin = new JTextField();
+		textFieldisAdmin.setBounds(221, 356, 255, 22);
+		contentPane.add(textFieldisAdmin);
+		textFieldisAdmin.setColumns(10);
 	}
 	
 	/*

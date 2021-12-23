@@ -18,7 +18,7 @@ import jdo.Usuario;
 public class GestorBD {
 	
 	protected static Connection conn = null;
-	private PreparedStatement pStatement = null;
+	private static PreparedStatement pStatement = null;
 	private static final Logger logger = LogManager.getLogger(GestorBD.class);
 	// Conectar BD
 	public static void cargarConectarDriver() {
@@ -69,8 +69,8 @@ public class GestorBD {
 		return null;
 	}
 	
-	public void guardarUsuario(Usuario j) throws BDException {
-
+	public static void guardarUsuario(Usuario j) throws BDException {
+		cargarConectarDriver();
         try {
               pStatement = conn.prepareStatement("INSERT INTO USUARIO VALUES (default, ?, ?, ?, ?, ?, ?)");
 
@@ -78,8 +78,8 @@ public class GestorBD {
               pStatement.setString(2, j.getNickname());
               pStatement.setString(3, j.getMail());
               pStatement.setString(4, j.getPassword());
-              pStatement.setLong(5, j.getPhoneNumber());
-              pStatement.setLong(6, j.getIsAdmin());
+              pStatement.setInt(5, j.getPhoneNumber());
+              pStatement.setInt(6, j.getIsAdmin());
              
 
               logger.info("Guardado el usuario " + j.getNombre() + "en la BD");

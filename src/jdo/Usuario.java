@@ -132,14 +132,10 @@ public class Usuario {
 		this.phoneNumber = phoneNumber;
 	}
 
-	/**
-	 * ToString del Usuario, saca un string con la estructura definida en el propio
-	 * método.
-	 */
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", nickname=" + nickname + ", mail=" + mail
-				+ ", password=" + password + ", phoneNumber=" + phoneNumber + "]";
+				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", isAdmin=" + isAdmin + "]";
 	}
 
 }

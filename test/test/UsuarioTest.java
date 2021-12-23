@@ -6,9 +6,12 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import jdo.Usuario;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author jonib
@@ -20,14 +23,16 @@ import jdo.Usuario;
  */
 public class UsuarioTest {
 	private Usuario u;
+	private Usuario u1;
 
 	/**
 	 * Metodo para construir objeto Usuario con sus atributos correspondientes.
 	 *
 	 */
-	@Before
+	@BeforeEach
 	public void setUp() {
-		u = new Usuario(0, "name", "nickname", "mail", "password", 99);
+		u = new Usuario(0, "Jon", "Ibarreche", "jon@gmail.com", "1234", 9821, 0);
+		u1 = new Usuario();
 	}
 
 	/**
@@ -35,19 +40,19 @@ public class UsuarioTest {
 	 *
 	 */
 	@Test
-	public void testSetGetId() {
-		u.setIdUsuario(0);
+	public void testGetId() {
 		assertEquals(0, u.getIdUsuario());
 	}
 
+	
 	/**
 	 * Test para obtener el nombre de un Usuario
 	 *
 	 */
+	
 	@Test
-	public void testSetGetName() {
-		u.setNombre("testNombre");
-		assertEquals("testNombre", u.getNombre());
+	public void testGetName() {
+		assertEquals("Jon", u.getNombre());
 	}
 
 	/**
@@ -56,8 +61,7 @@ public class UsuarioTest {
 	 */
 	@Test
 	public void testSetGetNickname() {
-		u.setNickname("testNickname");
-		assertEquals("testNickname", u.getNickname());
+		assertEquals("Ibarreche", u.getNickname());
 	}
 
 	/**
@@ -66,8 +70,7 @@ public class UsuarioTest {
 	 */
 	@Test
 	public void testSetGetMail() {
-		u.setMail("testMail");
-		assertEquals("testMail", u.getMail());
+		assertEquals("jon@gmail.com", u.getMail());
 	}
 
 	/**
@@ -76,8 +79,7 @@ public class UsuarioTest {
 	 */
 	@Test
 	public void testSetGetPassword() {
-		u.setPassword("testPassword");
-		assertEquals("testPassword", u.getPassword());
+		assertEquals("1234", u.getPassword());
 	}
 
 	/**
@@ -86,8 +88,7 @@ public class UsuarioTest {
 	 */
 	@Test
 	public void testSetGetPhoneNumber() {
-		u.setPhoneNumber(0);
-		assertEquals(0, u.getPhoneNumber());
+		assertEquals(9821, u.getPhoneNumber());
 	}
 
 	/**
@@ -97,8 +98,8 @@ public class UsuarioTest {
 	 */
 	@Test
 	public void testToString() {
-		assertEquals("Id = " + "0" + "User: Nombre = " + "name" + "| Username = " + "nickname" + "| Mail = " + "mail"
-				+ "| Teléfono = " + "99", u.toString());
+		assertEquals("Usuario [idUsuario=0, nombre=Jon, nickname=Ibarreche,"
+				+ " mail=jon@gmail.com, password=1234, phoneNumber=9821, isAdmin=0]", u.toString());
 
 	}
 }

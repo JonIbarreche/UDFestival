@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TicketWindow extends JFrame {
 
@@ -41,6 +43,14 @@ public class TicketWindow extends JFrame {
 		
 		
 		JLabel lblNewLabel = new JLabel("<-");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PrincipalWindow pw = new PrincipalWindow();
+				pw.setVisible(true);
+				dispose();
+			}
+		});
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel.setBounds(36, 13, 46, 40);
 		contentPane.add(lblNewLabel);

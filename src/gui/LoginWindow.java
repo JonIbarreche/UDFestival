@@ -176,8 +176,7 @@ public class LoginWindow extends JFrame {
 							PrincipalWindow pw = new PrincipalWindow();
 							pw.setVisible(true);
 							dispose();
-							JOptionPane.showMessageDialog(null, "Los datos son correctos", "Éxito en la operación",
-									JOptionPane.INFORMATION_MESSAGE);
+							
 						} else {
 							logger.warn("La contraseña introducida es incorrecta");
 							textPane.setVisible(true);

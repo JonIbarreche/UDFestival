@@ -6,7 +6,9 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import jdo.Concierto;
 import jdo.Cartelera;
@@ -28,11 +30,10 @@ public class CarteleraTest {
 	 * Metodo para construir objeto Cartelera con sus atributos correspondientes.
 	 *
 	 */
-	@Before
+	@BeforeEach
 	public void setup() {
-		c = new Cartelera(5, "", "", 100, "");
+		c = new Cartelera(5, "Jon", "descripcion cartelera", 60, "url");
 		con = new Concierto(0, "artista", "descripcion", 100, "url");
-		c = new Cartelera();
 	}
 
 	/**
@@ -41,7 +42,6 @@ public class CarteleraTest {
 	 */
 	@Test
 	public void testSetGetId() {
-		c.setId(5);
 		assertEquals(5, c.getId());
 	}
 
@@ -51,8 +51,7 @@ public class CarteleraTest {
 	 */
 	@Test
 	public void testSetGetArtista() {
-		c.setArtista("testArtista");
-		assertEquals("testArtista", c.getArtista());
+		assertEquals("Jon", c.getArtista());
 	}
 
 	/**
@@ -61,8 +60,7 @@ public class CarteleraTest {
 	 */
 	@Test
 	public void testSetGetDescription() {
-		c.setDescripcion("testDescripcion");
-		assertEquals("testDescripcion", c.getDescripcion());
+		assertEquals("descripcion cartelera", c.getDescripcion());
 	}
 
 	/**
@@ -71,8 +69,7 @@ public class CarteleraTest {
 	 */
 	@Test
 	public void testSetGetCapacidad() {
-		c.setCapacidad(100);
-		assertEquals(100, c.getCapacidad());
+		assertEquals(60, c.getCapacidad());
 	}
 
 	/**
@@ -81,9 +78,10 @@ public class CarteleraTest {
 	 */
 	@Test
 	public void testSetGetUrl() {
-		c.setUrl("url");
 		assertEquals("url", c.getUrl());
 	}
+	
+	
 
 	/**
 	 * Test para anadir un concierto a la cartelera

@@ -11,12 +11,15 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Test;
 
 
 import jdo.Cartelera;
 import jdo.Concierto;
 import jdo.Pedido;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 /**
  * @author jonib
  *
@@ -38,7 +41,7 @@ public class PedidoTest {
 	private Cartelera cartelera;
 	private Concierto concierto;
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 		productos = new ArrayList<Producto>();
 		//tickets = new ArrayList<Ticket>();
@@ -66,8 +69,7 @@ public class PedidoTest {
 	 */
 	@Test
 	public void testSetGetId() {
-		p.setId(5);
-		assertEquals(5, p.getId());
+		assertEquals(0, p.getId());
 	}
 	/**
 	 * Test para obtener el email de un Pedido
@@ -75,7 +77,6 @@ public class PedidoTest {
 	 */
 	@Test
 	public void testSetGetMail() {
-		p.setMail("ugalde@gmail.com");
 		assertEquals("ugalde@gmail.com", p.getMail());
 	}
 	/**
@@ -84,7 +85,6 @@ public class PedidoTest {
 	 */
 	@Test
 	public void testSetGetDate() {
-		p.setDate(dfd1);
 		assertEquals(dfd1, p.getDate());
 	}
 	/**
@@ -93,8 +93,7 @@ public class PedidoTest {
 	 */
 	@Test
 	public void testSetGetPrice() {
-		p.setPrecio(8);
-		assertEquals(8, p.getPrecio());
+		assertEquals(1, p.getPrecio());
 	}
 	
 	/**
@@ -110,7 +109,6 @@ public class PedidoTest {
 	 */
 	@Test
 	public void testSetGetProducts() {
-		p.setProductos(productos.toString());
 		assertEquals(productos.toString(), p.getProductos());
 	}
 	/**
@@ -119,8 +117,7 @@ public class PedidoTest {
 	 */
 	@Test
 	public void testSetGetPaymentMethod() {
-		p.setMetodoPago("paypal");
-		assertEquals("paypal", p.getMetodoPago());
+		assertEquals("En caja", p.getMetodoPago());
 	}
 	/**
 	 * Test para obtener el ToString del Pedido, saca un string con la estructura
@@ -133,7 +130,7 @@ public class PedidoTest {
 				"-------------------------------" + " \r\n " +
 				"Id de pedido: " + "0" + " \r\n " + 
 				"Fecha: " + dfd1 +  " \r\n " +
-				//"Tickets: " + tickets + " \r\n " +
+				"Tickets: " + "ticketsTest" + " \r\n " +
 				"Productos: "+ productos + " \r\n " +
 				"Método de pago: " + "En caja" + " \r\n " + 
 				"Precio: " + "1", p.toString());

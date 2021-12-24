@@ -6,7 +6,9 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import jdo.Concierto;
 
@@ -26,7 +28,7 @@ public class ConciertoTest {
 	 * Metodo para construir objeto Concierto con sus atributos correspondientes.
 	 *
 	 */
-	@Before
+	@BeforeEach
 	public void setup() {
 		c = new Concierto(5, "CTangana", "Evento Especial", 100, "url");
 	}
@@ -37,7 +39,6 @@ public class ConciertoTest {
 	 */
 	@Test
 	public void testSetGetId() {
-		c.setId(5);
 		assertEquals(5, c.getId());
 	}
 
@@ -47,8 +48,7 @@ public class ConciertoTest {
 	 */
 	@Test
 	public void testSetGetArtista() {
-		c.setArtista("CTangana");
-		assertEquals("Ctangana", c.getArtista());
+		assertEquals("CTangana", c.getArtista());
 	}
 
 	/**
@@ -57,7 +57,6 @@ public class ConciertoTest {
 	 */
 	@Test
 	public void testSetGetDescripcion() {
-		c.setDescripcion("Evento Especial");
 		assertEquals("Evento Especial", c.getDescripcion());
 	}
 
@@ -67,7 +66,6 @@ public class ConciertoTest {
 	 */
 	@Test
 	public void testSetGetCapacidad() {
-		c.setCapacidad(100);
 		assertEquals(100, c.getCapacidad());
 	}
 
@@ -88,6 +86,6 @@ public class ConciertoTest {
 	 */
 	@Test
 	public void testToString() {
-		assertEquals("CTangana " + "+" + "100", c.toString());
+		assertEquals("CTangana" + "" + "+" + "100" + "", c.toString());
 	}
 }

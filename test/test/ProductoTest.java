@@ -5,8 +5,10 @@ package test;
 
 import jdo.Producto;
 import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -24,9 +26,9 @@ public class ProductoTest {
 	 * Metodo para construir objeto Producto con sus atributos correspondientes.
 	 *
 	 */
-	@Before
+	@BeforeEach
 	public void setup() {
-		p = new Producto(0, "nombre", "descripcion", 10, null);
+		p = new Producto(0, "nombre", "descripcion", 10, "url");
 	}
 	
 	/**
@@ -36,8 +38,7 @@ public class ProductoTest {
 	
 	@Test
 	public void testGetSetNombre() {
-		p.setNombre("testNombre");
-		assertEquals("testNombre", p.getNombre());
+		assertEquals("nombre", p.getNombre());
 	}
 	/**
 	 * Test para obtener la descripcion de un Producto
@@ -45,8 +46,7 @@ public class ProductoTest {
 	 */
 	@Test
 	public void testGetSetDescripcion() {
-		p.setDescripcion("testDescripcion");
-		assertEquals("testDescripcion", p.getDescripcion());
+		assertEquals("descripcion", p.getDescripcion());
 	}
 	
 	/**
@@ -55,7 +55,6 @@ public class ProductoTest {
 	 */
 	@Test
 	public void testGetSetPrecio() {
-		p.setPrecio(10);
 		assertEquals(10, p.getPrecio());
 	}
 	
@@ -74,7 +73,6 @@ public class ProductoTest {
 	 */
 	@Test
 	public void testSetGetUrl() {
-		p.setUrl("url");
 		assertEquals("url", p.getUrl());
 	}
 	/**
@@ -84,7 +82,7 @@ public class ProductoTest {
 	 */
 	@Test
 	public void testToString() {
-		assertEquals("nombre" + ": descripcion" + ", Precio: 10 |", p.toString());
+		assertEquals("nombre" + ":descripcion" + ", Precio:10 |", p.toString());
 	}
 
 }

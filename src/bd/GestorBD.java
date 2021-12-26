@@ -72,7 +72,7 @@ public class GestorBD {
 	public static void guardarUsuario(Usuario j) throws BDException {
 		cargarConectarDriver();
         try {
-              pStatement = conn.prepareStatement("INSERT INTO USUARIO VALUES (default, ?, ?, ?, ?, ?, ?)");
+              pStatement = conn.prepareStatement("INSERT INTO usuario(nombre, nickname, mail, password, phoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?, ?)");
 
               pStatement.setString(1, j.getNombre());
               pStatement.setString(2, j.getNickname());
@@ -86,7 +86,7 @@ public class GestorBD {
 
               pStatement.executeUpdate();
             } catch (SQLException e) {
-                throw new BDException("Error al guardar el usuario admin", e);
+                throw new BDException("Error al guardar el usuario", e);
             }
     }
 	

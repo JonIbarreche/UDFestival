@@ -137,21 +137,22 @@ public class RegistroWindow extends JFrame {
 				String apo = textFieldApodo.getText();
 				String mail = textFieldMail.getText();
 				String con = textFieldContra.getText();
-				String tf = textFieldNTelefono.getText();
-				String isAdmin = textFieldisAdmin.getText();
+				int tf = Integer.parseInt(textFieldNTelefono.getText());
+				int isAdmin = Integer.parseInt(textFieldisAdmin.getText());
 				
 				
-				Usuario u = new Usuario();
+				Usuario u = new Usuario(0,nom, apo, mail, con, tf, isAdmin);
 				
 				try {
 					GestorBD.guardarUsuario(u);
+					JOptionPane.showMessageDialog(null, "Los datos se han registrado correctamente", "Éxito en la operación",
+						JOptionPane.INFORMATION_MESSAGE);
 				} catch (BDException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
-				JOptionPane.showMessageDialog(null, "Los datos se han registrado correctamente", "Éxito en la operación",
-						JOptionPane.INFORMATION_MESSAGE);
+				
 				//GestorBD.insertarUsuario(nom, apo, mail, con, tf);
 				dispose();
 			}

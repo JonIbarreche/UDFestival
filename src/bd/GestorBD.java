@@ -10,8 +10,13 @@ import java.sql.Statement;
 
 import org.apache.log4j.*;
 
-
+import jdo.Producto;
 import jdo.Usuario;
+import jdo.Cartelera;
+import jdo.Concierto;
+import jdo.Pedido;
+import jdo.Inventario;
+import jdo.Ticket;
 
 
 
@@ -201,6 +206,35 @@ public class GestorBD {
 			}
 		}
 		
+		public static Producto obtenerDatosProducto(long id) {
+			String sentSQL = "select * from Producto where id="+id+";";
+			Producto pro = null;
+			try {
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
+				System.out.println(sentSQL);
+				if(rs.next()) {
+					System.out.println("PRODUCTO ENCONTRADO");
+					
+					String nom = rs.getString("nombre");
+					String des = rs.getString("descripcion");
+					long pre = rs.getLong("precio");
+					String url =  rs.getString("url");
+					int isAdmin = rs.getInt("1");
+					pro = new Producto(id, nom, des, pre, url);
+				}else {
+
+					System.out.println("PRODUCTO NO ENCONTRADO");
+				}
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return pro;
+		}
+		
 		//Insertar cartelera en la bd
 		public static void insertarCartelera(Connection con, long id, String artista, String des, int cap, String url) {
 			String sentSQL = "INSERT INTO Cartelera VALUES('"+id+"','"+artista+"','"+des+"',"+cap+",'"+url+"')";
@@ -226,6 +260,35 @@ public class GestorBD {
 			}
 		}
 		
+		public static Cartelera obtenerDatosCartelera(long id) {
+			String sentSQL = "select * from Cartelera where id="+id+";";
+			Cartelera car = null;
+			try {
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
+				System.out.println(sentSQL);
+				if(rs.next()) {
+					System.out.println("CARTELERA ENCONTRADA");
+					
+					String art = rs.getString("artista");
+					String des = rs.getString("descripcion");
+					int cap = rs.getInt("cap");
+					String url =  rs.getString("url");
+					int isAdmin = rs.getInt("1");
+					car = new Cartelera(id, art, des, cap, url);
+				}else {
+
+					System.out.println("PRODUCTO NO ENCONTRADO");
+				}
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return car;
+		}
+		
 		//Insertar concierto en la BD
 		public static void insertarConcierto(Connection con, long id, String artista, String des, int cap, String url) {
 			String sentSQL = "INSERT INTO Concierto VALUES('"+id+"','"+artista+"','"+des+"',"+cap+",'"+url+"')";
@@ -248,6 +311,35 @@ public class GestorBD {
 			} catch (SQLException e) {
 				logger.warn(e.getMessage());
 			}
+		}
+		
+		public static Concierto obtenerDatosConcierto(long id) {
+			String sentSQL = "select * from Concierto where id="+id+";";
+			Concierto con = null;
+			try {
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
+				System.out.println(sentSQL);
+				if(rs.next()) {
+					System.out.println("CONCIERTO ENCONTRADO");
+					
+					String art = rs.getString("artista");
+					String des = rs.getString("descripcion");
+					int cap = rs.getInt("cap");
+					String url =  rs.getString("url");
+					int isAdmin = rs.getInt("1");
+					con = new Concierto(id, art, des, cap, url);
+				}else {
+
+					System.out.println("PRODUCTO NO ENCONTRADO");
+				}
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return con;
 		}
 	
 }

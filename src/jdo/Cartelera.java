@@ -14,7 +14,7 @@ import jdo.Concierto;
  *
  */
 public class Cartelera {
-	protected long id;
+	protected int id;
 	protected String artista = null;
 	protected String descripcion = null;
 	protected int capacidad = -1;
@@ -23,7 +23,7 @@ public class Cartelera {
 	/**
 	 * Construir objeto Cartelera con sus atributos correspondientes.
 	 */
-	public Cartelera(long id, String artista, String descripcion, int capacidad, String url) {
+	public Cartelera(int id, String artista, String descripcion, int capacidad, String url) {
 		super();
 		this.id = id;
 		this.artista = artista;
@@ -56,14 +56,14 @@ public class Cartelera {
 	/**
 	 * Obtener el id de la Cartelera
 	 */
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
 	/**
 	 * Establecer el id de la Cartelera
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -97,11 +97,42 @@ public class GestorBD {
 	
 		//Crear tablas en la bd (usuario, producto, cartelera y concierto)
 		public static void crearTablas(Connection con) {
-			String sent1 = "CREATE TABLE IF NOT EXISTS Usuario(id long, nom String, nick String, mail String, password String, phone int)";
-			String sent2 = "CREATE TABLE IF NOT EXISTS Producto(id long, nombre String, descripcion String, precio long, url String)";
-			String sent3 = "CREATE TABLE IF NOT EXISTS Cartelera(id long, artista String, descripcion String, capacidad int, url String)";
-			String sent4 = "CREATE TABLE IF NOT EXISTS Concierto(id long, artista String, descripcion String, capacidad int, url String)";
 			
+			String sent1 = "CREATE TABLE \"usuario\" (\r\n"
+					+ "	\"idUsuario\"	INTEGER,\r\n"
+					+ "	\"nombre\"	TEXT,\r\n"
+					+ "	\"nickname\"	TEXT,\r\n"
+					+ "	\"mail\"	TEXT,\r\n"
+					+ "	\"password\"	TEXT,\r\n"
+					+ "	\"phoneNumber\"	INTEGER,\r\n"
+					+ "	\"isAdmin\"	INTEGER,\r\n"
+					+ "	PRIMARY KEY(\"idUsuario\" AUTOINCREMENT)\r\n"
+					+ ");";
+	String sent2 = "CREATE TABLE \"ticket\" (\r\n"
+					+ "	\"id\"	INTEGER,\r\n"
+					+ "	\"concierto\"	INTEGER,\r\n"
+					+ "	\"precio\"	INTEGER,\r\n"
+					+ "	\"sesion\"	TEXT,\r\n"
+					+ "	PRIMARY KEY(\"id\" AUTOINCREMENT),\r\n"
+					+ "	FOREIGN KEY(\"concierto\") REFERENCES \"concierto\"(\"id\")\r\n"
+					+ ");";
+	String sent3 = "CREATE TABLE \"cartelera\" (\r\n"
+					+ "	\"id\"	INTEGER,\r\n"
+					+ "	\"artista\"	TEXT,\r\n"
+					+ "	\"descripcion\"	TEXT,\r\n"
+					+ "	\"capacidad\"	INTEGER,\r\n"
+					+ "	\"url\"	TEXT,\r\n"
+					+ "	PRIMARY KEY(\"id\")\r\n"
+					+ ");";
+	String sent4 = "CREATE TABLE \"concierto\" (\r\n"
+					+ "	\"id\"	INTEGER,\r\n"
+					+ "	\"artista\"	TEXT,\r\n"
+					+ "	\"descripcion\"	TEXT,\r\n"
+					+ "	\"capacidad\"	INTEGER,\r\n"
+					+ "	\"url\"	TEXT,\r\n"
+					+ "	PRIMARY KEY(\"id\")\r\n"
+					+ ");";
+	
 			Statement st = null;
 			
 			try {
@@ -192,6 +223,38 @@ public class GestorBD {
 			} catch (SQLException e) {
 				logger.warn(e.getMessage());
 			}
+		}
+		public static void insertarTicket(Ticket t) throws BDException {
+			cargarConectarDriver();
+	        try {
+	              pStatement = conn.prepareStatement("INSERT INTO ticket(concierto, precio, sesion) VALUES (?, ?, ?)");
+
+	              pStatement.setInt(1, t.getConcierto().getId());
+	              pStatement.setLong(2, t.getPrecio());
+	              pStatement.setString(3, t.getSesion());
+
+
+	              logger.info("Guardado el usuario " + t.getPrecio() + "en la BD");
+
+	              pStatement.executeUpdate();
+	            } catch (SQLException e) {
+	                throw new BDException("Error al guardar el usuario", e);
+	            }
+	    }
+		
+		public static ResultSet llenarTablaTickets() throws SQLException {
+			cargarConectarDriver();
+
+			pStatement = conn.prepareStatement("SELECT * FROM ticket");
+
+			try {
+				ResultSet rs = pStatement.executeQuery();
+				logger.info("Obtenida la información de los tickets");
+				return rs;
+			} catch (SQLException e) {
+				logger.error("Imposible obtener la información de los tickets" , e);
+			}
+			return null;
 		}
 		
 		// Eliminar producto de la bd

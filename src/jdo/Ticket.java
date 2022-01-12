@@ -15,16 +15,16 @@ import java.util.Date;
  */
 public class Ticket {
 	
-	protected long id;
+	protected int id;
 	protected Cartelera cartelera = null;
 	protected Concierto concierto = null;
 	protected long precio = -1;
-	protected Date sesion = null;
+	protected String sesion = null;
 	
 	/**
 	 * Construir objeto Ticket con sus atributos correspondientes.
 	 */
-	public Ticket(long id, Cartelera cartelera, Concierto concierto, long precio, Date sesion) {
+	public Ticket(int id, Cartelera cartelera, Concierto concierto, long precio, String sesion) {
 		super();
 		this.id = id;
 		this.cartelera = cartelera;
@@ -32,29 +32,20 @@ public class Ticket {
 		this.precio = precio;
 		this.sesion = sesion;
 	}
+	public Ticket() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * Obtener el Id de un Ticket
 	 */
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	/**
 	 * Establecer el Id de un Ticket
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
-	}
-	/**
-	 * Obtener la Cartelera de un Ticket
-	 */
-	public Cartelera getCartelera() {
-		return cartelera;
-	}
-	/**
-	 * Establecer la Cartelera de un Ticket
-	 */
-	public void setCartelera(Cartelera cartelera) {
-		this.cartelera = cartelera;
 	}
 	/**
 	 * Obtener el Concierto de un Ticket
@@ -83,13 +74,13 @@ public class Ticket {
 	/**
 	 * Obtener la sesion de un Ticket
 	 */
-	public Date getSesion() {
+	public String getSesion() {
 		return sesion;
 	}
 	/**
 	 * Establecer la sesion de un Ticket
 	 */
-	public void setSesion(Date sesion) {
+	public void setSesion(String sesion) {
 		this.sesion = sesion;
 	}
 	/**
@@ -98,7 +89,7 @@ public class Ticket {
 	 */
 	@Override
 	public String toString() {
-		return "Ticket [id=" + id + ", cartelera=" + cartelera + ", concierto=" + concierto + ", precio=" + precio
+		return "Ticket [id=" + id + ", concierto=" + concierto + ", precio=" + precio
 				+ ", sesion=" + sesion + "]";
 	}
 	

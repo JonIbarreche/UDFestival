@@ -185,7 +185,7 @@ public class TicketWindow extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//AÃ±adir 
-				JOptionPane.showMessageDialog(null, "Los datos se han aÃ±adido correctamente", "Exito en la operacion",
+				JOptionPane.showMessageDialog(null, "Los datos se han añadido correctamente", "Exito en la operacion",
 						JOptionPane.INFORMATION_MESSAGE);
 
 				int concierto = Integer.parseInt(txtConcierto.getText());

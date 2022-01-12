@@ -322,7 +322,8 @@ public class GestorBD {
 				logger.warn(e.getMessage());
 			}
 		}
-		
+		/**
+		 * 
 		public static Cartelera obtenerDatosCartelera(long id) {
 			String sentSQL = "select * from Cartelera where id="+id+";";
 			Cartelera car = null;
@@ -351,7 +352,7 @@ public class GestorBD {
 			}
 			return car;
 		}
-		
+		*/
 		//Insertar concierto en la BD
 		public static void insertarConcierto(Connection con, long id, String artista, String des, int cap, String url) {
 			String sentSQL = "INSERT INTO Concierto VALUES('"+id+"','"+artista+"','"+des+"',"+cap+",'"+url+"')";
@@ -375,7 +376,7 @@ public class GestorBD {
 				logger.warn(e.getMessage());
 			}
 		}
-		
+		/*
 		public static Concierto obtenerDatosConcierto(long id) {
 			String sentSQL = "select * from Concierto where id="+id+";";
 			Concierto con = null;
@@ -404,5 +405,6 @@ public class GestorBD {
 			}
 			return con;
 		}
+		*/
 	
 }

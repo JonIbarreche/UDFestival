@@ -45,32 +45,26 @@ public class TicketTest {
 		dfd.set(Calendar.SECOND, 00);
 		dfd1 = dfd.getTime();
 		
-		t = new Ticket(0, c, con, 10, null);
+		t = new Ticket(0, con, 10, null);
 	}
 	/**
 	 * Test para obtener el id de un Ticket
 	 *
 	 */
+	
 	@Test 
 	public void testSetGetId() {
 		t.setId(0);
 		assertEquals(0, t.getId());
 	}
 	/**
-	 * Test para obtener la cartelera de un ticket
-	 */
-	@Test
-	public void testSetGetCartelera() {
-		t.setCartelera(c);
-		assertEquals(c, t.getCartelera());
-	}
-	/**
 	 * Test para obtener el concierto de un ticket
 	 */
+	
 	@Test
 	public void testSetGetConcierto() {
 		t.setConcierto(con);
-		assertEquals(con, t.getCartelera());
+		assertEquals(con, t.getConcierto());
 	}
 	/**
 	 * Test para obtener el precio de un ticket
@@ -85,8 +79,8 @@ public class TicketTest {
 	 */
 	@Test
 	public void testSetGetSesion() {
-		t.setSesion(dfd1);
-		assertEquals(dfd1, t.getSesion());
+		t.setSesion(null);
+		assertEquals(null, t.getSesion());
 	}
 	/**
 	 * Test para obtener el ToString de El Ticket, saca un string con la estructura
@@ -95,7 +89,7 @@ public class TicketTest {
 	 */
 	@Test
 	public void testToString() {
-		assertEquals("Ticket [id=0" + ", cartelera=" + c + ", concierto=" + con +
+		assertEquals("Ticket [id=0" + ", concierto=" + con +
 				 ", precio=" + 10 + ", sesion=" + null + "]", t.toString());
 		
 	}

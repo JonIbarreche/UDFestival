@@ -56,7 +56,7 @@ public class Cartelera {
 	/**
 	 * Obtener el id de la Cartelera
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

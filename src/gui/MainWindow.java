@@ -1,11 +1,13 @@
 package gui;
 
 import java.awt.EventQueue;
-import bd.GestorBD;
+
+
 import java.util.logging.Level;
 import org.apache.log4j.*;
 
 import gui.LoginWindow;
+import bd.GestorBD;
 
 public class MainWindow {
 	private static final Logger logger = LogManager.getLogger(MainWindow.class);

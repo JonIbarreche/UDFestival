@@ -1,8 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.awt.EventQueue;
+import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -57,8 +58,14 @@ public class PrincipalWindow extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ir a TicketWindow
-				TicketWindow tw = new TicketWindow();
-				tw.setVisible(true);
+				TicketWindow tw;
+				try {
+					tw = new TicketWindow();
+					tw.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
 				dispose();
 			}
 		});
@@ -70,8 +77,12 @@ public class PrincipalWindow extends JFrame {
 		btnComprarPackAhorro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ir a TicketWindow
-				TicketWindow tw = new TicketWindow();
-				tw.setVisible(true);
+				try {
+					TicketWindow tw = new TicketWindow();
+					tw.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				dispose();
 			}
 		});

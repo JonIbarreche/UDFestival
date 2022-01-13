@@ -16,7 +16,6 @@ import java.util.Date;
 public class Ticket {
 	
 	protected int id;
-	protected Cartelera cartelera = null;
 	protected Concierto concierto = null;
 	protected long precio = -1;
 	protected String sesion = null;
@@ -24,10 +23,9 @@ public class Ticket {
 	/**
 	 * Construir objeto Ticket con sus atributos correspondientes.
 	 */
-	public Ticket(int id, Cartelera cartelera, Concierto concierto, long precio, String sesion) {
+	public Ticket(int id, Concierto concierto, long precio, String sesion) {
 		super();
 		this.id = id;
-		this.cartelera = cartelera;
 		this.concierto = concierto;
 		this.precio = precio;
 		this.sesion = sesion;
@@ -38,7 +36,7 @@ public class Ticket {
 	/**
 	 * Obtener el Id de un Ticket
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	/**

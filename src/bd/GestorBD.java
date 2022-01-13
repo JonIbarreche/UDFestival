@@ -40,7 +40,7 @@ public class GestorBD {
 			}
 	}
 	//Desconectar BD
-	public void desconectar() throws BDException {
+	public static void desconectar() throws BDException {
 		try {
 			if (conn != null) {
 				conn.close();

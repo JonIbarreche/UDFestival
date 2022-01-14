@@ -48,10 +48,11 @@ public class ConsultaConciertosWindow extends JInternalFrame{
 		contentPane.add(panelTabla, BorderLayout.CENTER);
 		Object[] cabeceras = {"ID","ARTISTA","DESCRIPCION","CAPACIDAD","URL"};
 		modeloConciertos.setColumnIdentifiers(cabeceras);
-		cargarModeloTabla();
+		//cargarModeloTabla();
 		tablaConciertos = new JTable(modeloConciertos);
 		panelTabla.add(tablaConciertos);
-		
+		/*
+		 *
 		private void cargarModeloTabla() {
 			GestorBD.cargarConectarDriver();
 			ArrayList<Concierto> a = GestorBD.obtenerDatosConcierto(con);
@@ -62,8 +63,7 @@ public class ConsultaConciertosWindow extends JInternalFrame{
 			}
 		}
 	
-		/*
-		 * for (Concierto c : GestorBD.obtenerDatosConcierto()) {
+		 for (Concierto c : GestorBD.obtenerDatosConcierto()) {
 			String [] fila ==
 			modeloTabla.addRow(fila);
 			}

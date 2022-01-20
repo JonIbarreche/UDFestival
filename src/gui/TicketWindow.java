@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -108,6 +110,14 @@ public class TicketWindow extends JFrame {
 		mainPanel.add(lblTiTulo);
 		
 		JLabel lblNewLabel = new JLabel("<-");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PrincipalWindow pw = new PrincipalWindow();
+				pw.setVisible(true);
+				dispose();
+			}
+		});
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lblNewLabel.setBounds(35, 27, 56, 38);
 		mainPanel.add(lblNewLabel);
